@@ -3,9 +3,8 @@
     "title": "PF2e Repeated Skill Challenge Continued",
     "description": "Module to help facilitate repeated skill challenges in PF2e, original by drex193",
     "author": "Mark Pearce",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "minimumCoreVersion": "9.0",
-    "compatibleCoreVersion": "9.0",
     "esmodules": [
         "scripts/init.js",
         "scripts/scripts.js"
