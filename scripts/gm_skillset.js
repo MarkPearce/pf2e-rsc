@@ -99,7 +99,7 @@ let dialog = new Dialog({
           custom.position.width = 125
           custom.render(true)
         } else {
-          game.socket.emit('module.pf2e-rsc', {
+          game.socket.emit('module.pf2e-rsc-fork', {
             operation: 'playerSkillChallenge',
             neededSuccesses: presets[preset].successes,
             DC: presets[preset].DC,
@@ -109,15 +109,6 @@ let dialog = new Dialog({
             abort,
             tokenID,
           })
-          console.log('emit')
-          console.log('playerSkillChallenge')
-          console.log('neededSuccesses:' + presets[preset].successes)
-          console.log('DC:' + presets[preset].DC)
-          console.log('actor:' + actor)
-          console.log('mod:' + actor.data.data.skills[skill].value)
-          console.log('skillLabel:' + skillLabel)
-          console.log('abort' + abort)
-          console.log('tokenID' + tokenID)
         }
       },
     },
@@ -137,7 +128,7 @@ let custom = new Dialog({
       callback: (html) => {
         let neededSuccesses = parseInt(html.find('#successes')[0].value)
         let DC = parseInt(html.find('#pf2e-rsc-customDC')[0].value)
-        game.socket.emit('module.pf2e-rsc', {
+        game.socket.emit('module.pf2e-rsc-fork', {
           operation: 'playerSkillChallenge',
           neededSuccesses,
           DC,
