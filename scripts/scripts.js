@@ -16,11 +16,11 @@
 export function skillChallenge(
   targetSuccesses,
   targetDC,
-  actor,
-  mod,
   skillLabel,
   abort,
   tokenID,
+  actor,
+  mod,
 ) {
   const skillRefs = {
     Thievery: 'thi',
@@ -42,8 +42,6 @@ export function skillChallenge(
   }
 
   let skillKey = skillRefs[skillLabel]
-  // console.log(targetSuccesses)
-  console.log('targetDC ' + targetDC)
   let token = canvas.tokens.get(tokenID)
 
   let successes = 0
@@ -114,14 +112,7 @@ export function skillChallenge(
   }
 
   // if autopick is checked, keep going until success or critical failure
-  async function fastMode(
-    targetSuccesses,
-    targetDC,
-    actor,
-    mod,
-    bonuses,
-    abort,
-  ) {
+  async function fastMode(targetSuccesses, targetDC, bonuses, abort) {
     do {
       attempts++
       if (bonuses) {
@@ -193,7 +184,6 @@ export function skillChallenge(
       results += ` Your roll result was: ${rollResArr.toString()}.`
       results += ` The attempt took ${attempts} round.`
     }
-
     generateChat(actor, results)
   }
 
@@ -342,7 +332,7 @@ export function skillChallenge(
   // v9.0 roller
 
   async function rollSkillCheck(skillKey) {
-    const whatSkill = token.actor.data.data.skills[skillKey]
+    const whatSkill = token.actor.system.skills[skillKey]
     let result = await game.pf2e.Check.roll(
       new game.pf2e.CheckModifier('', whatSkill),
       {
@@ -366,7 +356,7 @@ export function skillChallenge(
 
     bonusModifiers.push(bonusModifier)
 
-    const whatSkill = token.actor.data.data.skills[skillKey]
+    const whatSkill = token.actor.system.skills[skillKey]
     let result = await game.pf2e.Check.roll(
       new game.pf2e.CheckModifier('', whatSkill),
       {

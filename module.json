@@ -1,26 +1,39 @@
 {
-    "name": "pf2e-rsc-fork",
-    "title": "PF2e Repeated Skill Challenge Continued",
-    "description": "Module to help facilitate repeated skill challenges in PF2e, original by drex193",
-    "author": "Mark Pearce",
-    "version": "1.4.5",
-    "minimumCoreVersion": "9.0",
-    "esmodules": [
-        "scripts/init.js",
-        "scripts/scripts.js"
-    ],
-    "styles": [ "./pf2e-rsc.css" ],
-    "packs": [
-	{
-            "name": "pf2e-rsc-fork",
-            "label": "PF2e Repeated Skill Challenge Continued",
-            "path": "packs/pf2e-rsc.db",
-            "module": "pf2e-rsc-fork",
-            "entity": "Macro"
+  "id": "pf2e-rsc",
+  "title": "PF2e Repeated Skill Challenge",
+  "description": "Module to help facilitate repeated skill challenges in PF2e",
+  "version": "2.0.0",
+  "compatibility": {
+    "minimum": 10,
+    "verified": 10
+  },
+  "authors": [
+    { "name": "drexl93", "discord": "Some Knucklehead#4725" },
+    { "name": "Mark Pearce", "discord": "Mark Pearce#2772" }
+  ],
+  "esmodules": ["scripts/init.js", "scripts/scripts.js"],
+  "styles": ["./pf2e-rsc.css"],
+  "packs": [
+    {
+      "name": "pf2e-rsc",
+      "label": "PF2e Repeated Skill Challenge",
+      "path": "packs/pf2e-rsc.db",
+      "module": "pf2e-rsc",
+      "type": "Macro"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "compatibility": {
+          "minimum": "4.0.0"
         }
-    ],
-    "socket": true,
-    "url": "https://github.com/MarkPearce/pf2e-rsc-fork",
-    "manifest": "https://github.com/MarkPearce/pf2e-rsc-fork/releases/latest/download/module.json",
-    "download": "https://github.com/MarkPearce/pf2e-rsc-fork/releases/latest/download/pf2e-rsc-fork.zip"
+      }
+    ]
+  },
+  "socket": true,
+  "url": "https://github.com/MarkPearce/pf2e-rsc-v10",
+  "manifest": "https://github.com/MarkPearce/pf2e-rsc-v10/releases/latest/download/module.json",
+  "download": "https://github.com/MarkPearce/pf2e-rsc-v10/releases/latest/download/pf2e-rsc-v10.zip"
 }

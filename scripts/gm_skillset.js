@@ -2,7 +2,7 @@
 // Can pick from a set of published combos (based off Locks) or create a custom one
 
 let tokens = canvas.tokens.controlled.filter((t) =>
-  ['character'].includes(t.actor.data.type),
+  ['character'].includes(t.actor.type),
 )
 
 if (tokens.length > 1) {
@@ -15,9 +15,7 @@ if (tokens.length === 0) {
 }
 
 let tokenID = tokens[0].id
-
-//console.log("tokenID " + tokenID);
-//console.log(tokens);
+let actorID = tokens[0].document.actorId
 
 let presets = {
   poor: { DC: 15, successes: 2 },
@@ -93,21 +91,21 @@ let dialog = new Dialog({
         skill = html.find('#skill')[0].value
         skillLabel = html.find('#skill')[0].selectedOptions[0].label
         let preset = html.find('#preset')[0].value
+        let actor = game.actors.get(actorID)
         abort = html.find(`#yes`)[0].checked
         if (preset === 'custom') {
           custom.options.width = 125
           custom.position.width = 125
           custom.render(true)
         } else {
-          game.socket.emit('module.pf2e-rsc-fork', {
+          game.socket.emit('module.pf2e-rsc', {
             operation: 'playerSkillChallenge',
             neededSuccesses: presets[preset].successes,
             DC: presets[preset].DC,
-            actor,
-            mod: actor.data.data.skills[skill].value,
             skillLabel,
             abort,
             tokenID,
+            actor,
           })
         }
       },
@@ -127,16 +125,17 @@ let custom = new Dialog({
       label: 'Select',
       callback: (html) => {
         let neededSuccesses = parseInt(html.find('#successes')[0].value)
+
+        let actor = game.actors.get(actorID)
         let DC = parseInt(html.find('#pf2e-rsc-customDC')[0].value)
-        game.socket.emit('module.pf2e-rsc-fork', {
+        game.socket.emit('module.pf2e-rsc', {
           operation: 'playerSkillChallenge',
           neededSuccesses,
           DC,
-          actor,
-          mod: actor.data.data.skills[skill].value,
           skillLabel,
           abort,
           tokenID,
+          actor,
         })
       },
     },
